@@ -1,0 +1,6 @@
+.listItem {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  flex-wrap: wrap;
+}
