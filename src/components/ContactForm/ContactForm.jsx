@@ -5,6 +5,7 @@ import css from "./ContactForm.module.css";
 import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/ContactSlice";
+import { addContactDataThunk } from "../../redux/contactsOps";
 
 const ContactFrom = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const ContactFrom = () => {
       id,
     };
 
-    dispatch(addContact(newContact));
+    dispatch(addContactDataThunk(newContact));
     options.resetForm();
   };
 

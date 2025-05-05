@@ -5,6 +5,7 @@ import css from "./ContactList.module.css";
 const ContactList = () => {
   const itemContact = useSelector((state) => state.item.contacts.items);
   const FilterContactNew = useSelector((state) => state.filter.filter);
+  const error = useSelector((state) => state.item.contacts.error);
 
   const FilterContact = itemContact.filter((item) =>
     item.name.toLowerCase().includes(FilterContactNew.toLowerCase())
@@ -18,6 +19,7 @@ const ContactList = () => {
           </li>
         ))}
       </ul>
+      {error && <h2>Error 404...</h2>}
     </>
   );
 };

@@ -1,4 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  addContactDataThunk,
+  deleteContactData,
+  fetchContactsData,
+} from "./contactsOps";
 
 const initialState = {
   contacts: {
@@ -29,6 +34,23 @@ const slice = createSlice({
     setError: (state, action) => {
       state.contacts.error = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchContactsData.fulfilled, (state, action) => {
+        state.contacts.items = action.payload;
+      })
+      .addCase(fetchContactsData.rejected, (state, action) => {
+        state.contacts.error = action.payload;
+      })
+      .addCase(deleteContactData.fulfilled, (state, action) => {
+        state.contacts.items = state.contacts.items.filter(
+          (item) => item.id !== action.payload
+        );
+      })
+      .addCase(addContactDataThunk.fulfilled, (state, action) => {
+        state.contacts.items.push(action.payload);
+      });
   },
 });
 
