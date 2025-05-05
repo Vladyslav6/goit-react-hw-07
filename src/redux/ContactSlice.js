@@ -20,15 +20,15 @@ const slice = createSlice({
         (item) => item.id !== action.payload
       );
     },
-    // dataConactsOperations: (state, action) => {
-    //   state.contacts.items = action.payload;
-    // },
-    // setLoading: (state, action) => {
-    //   state.contacts.Loading = action.payload;
-    // },
-    // setError: (state, action) => {
-    //   state.contacts.error = action.payload;
-    // },
+    dataConactsOperations: (state, action) => {
+      state.contacts.items = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.contacts.Loading = action.payload;
+    },
+    setError: (state, action) => {
+      state.contacts.error = action.payload;
+    },
   },
 });
 

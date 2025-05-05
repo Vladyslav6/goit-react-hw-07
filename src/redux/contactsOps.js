@@ -3,16 +3,16 @@ import { dataConactsOperations, setError, setLoading } from "./ContactSlice";
 
 axios.defaults.baseURL = "https://68188cec5a4b07b9d1cfb0b6.mockapi.io";
 
-export const fetchContactsData = async () => {
+export const fetchContactsData = () => async (dispatch) => {
   try {
-    // dispatch(setLoading(true));
+    dispatch(setLoading(true));
     const response = await axios.get("/contacts");
-    // console.log(response.data);
-    // dispatch(dataConactsOperations(response.data));
-    // dispatch(setLoading(false));
+
+    dispatch(dataConactsOperations(response.data));
+    dispatch(setLoading(false));
     console.log(response.data);
   } catch (error) {
-    // dispatch(setError(error));
+    dispatch(setError(error));
     console.log(error);
   }
 };
