@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   contacts: {
     items: [],
+    Loading: false,
+    error: null,
   },
 };
 
@@ -18,8 +20,23 @@ const slice = createSlice({
         (item) => item.id !== action.payload
       );
     },
+    // dataConactsOperations: (state, action) => {
+    //   state.contacts.items = action.payload;
+    // },
+    // setLoading: (state, action) => {
+    //   state.contacts.Loading = action.payload;
+    // },
+    // setError: (state, action) => {
+    //   state.contacts.error = action.payload;
+    // },
   },
 });
 
-export const { addContact, deleteContact } = slice.actions;
+export const {
+  addContact,
+  deleteContact,
+  dataConactsOperations,
+  setLoading,
+  setError,
+} = slice.actions;
 export const contactSlice = slice.reducer;
