@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSelector, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   addContactDataThunk,
   deleteContactData,
@@ -68,6 +68,31 @@ const slice = createSlice({
 export const selectContacts = (state) => state.item.contacts.items;
 export const selectError = (state) => state.item.contacts.error;
 export const selectLoading = (state) => state.item.contacts.Loading;
+
+export const selectFilteredContacts = createSelector(
+  [selectContacts, (state) => state.filter.filter],
+  (contacts, filter) => {
+    if (!filter) {
+      return contacts;
+    }
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  }
+);
+
+// export const selectFilteredContacts = (state) => {
+//   const contacts = selectContacts(state);
+//   const filter = state.filter.filter;
+//   if (!filter) {
+//     return contacts;
+//   }
+//   const normalizedFilter = filter.toLowerCase();
+//   return contacts.filter((contact) =>
+//     contact.name.toLowerCase().includes(normalizedFilter)
+//   );
+// };
 
 export const {
   addContact,
