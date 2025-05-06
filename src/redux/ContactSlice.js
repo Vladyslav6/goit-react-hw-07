@@ -82,18 +82,6 @@ export const selectFilteredContacts = createSelector(
   }
 );
 
-// export const selectFilteredContacts = (state) => {
-//   const contacts = selectContacts(state);
-//   const filter = state.filter.filter;
-//   if (!filter) {
-//     return contacts;
-//   }
-//   const normalizedFilter = filter.toLowerCase();
-//   return contacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(normalizedFilter)
-//   );
-// };
-
 export const {
   addContact,
   deleteContact,
